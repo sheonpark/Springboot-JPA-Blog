@@ -1,6 +1,45 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    
 spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: gogo
     password: gogo1234
+
+
+#physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 는 테이블 생성시 필드명 그대로 생성
+#use-new-id-generator-mappings: false 는 JPA의 numbering 전략을기존전략을 사용하지 않음.
+# ddl-auto 는 처음 실행시에는 create, 두번째 부터는 update로 변경해서 사용할것
+#show-sql: true 는 컨솔 창에 db 생성되는게 보임 
+#   properties:      hibernate.format_sql: true 는 db 생성되는 모습이 잘 정렬되서 보이게 하는 속성
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create 
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: false
+    properties:
+      hibernate.format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+
+gogo:
+  key: gogo1234_asdfghjkl
